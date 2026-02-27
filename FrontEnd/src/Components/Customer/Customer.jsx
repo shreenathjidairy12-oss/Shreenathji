@@ -99,7 +99,7 @@ const handleGenerateBill = async () => {
   if (!customerId) return alert("Customer ID missing");
 
   try {
-    const url = `${import.meta.env.VITE_BACKEND_URL}/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
+    const url = `${import.meta.env.VITE_BACKEND_URL}/api/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
 
     const response = await fetch(url, {
       method: "GET",

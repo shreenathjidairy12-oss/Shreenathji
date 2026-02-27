@@ -12,7 +12,7 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  process.env.FRONTEND_URL || "https://dairy-farm-black.vercel.app"
+  process.env.FRONTEND_URL || "https://shreenathji.vercel.app"
 ];
 
 const corsOptions = {

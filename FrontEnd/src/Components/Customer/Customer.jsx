@@ -5,6 +5,7 @@ import Calendar from "./Calendar/Calendar";
 import { monthKey } from "./utils/dateUtils";
 import Logout from "../Common/Logout";
 import "./Customer.css";
+import {API} from "../../config/api"
 
 
 function decodeJwt(token) {
@@ -99,7 +100,7 @@ const handleGenerateBill = async () => {
   if (!customerId) return alert("Customer ID missing");
 
   try {
-    const url = `${import.meta.env.VITE_BACKEND_URL}/api/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
+    const url = `${API}/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
 
     const response = await fetch(url, {
       method: "GET",

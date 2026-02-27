@@ -6,27 +6,6 @@ import { monthKey } from "./utils/dateUtils";
 import Logout from "../Common/Logout";
 import "./Customer.css";
 
-/**
- * This component:
- * - extracts customerId from token stored in localStorage (common claim names supported)
- * - fetches current month summary on mount
- * - caches fetched months in memory (simple object)
- * - navigates months via prev/next controls
- * - displays total litres & total amount in header
- *
- * It expects the backend endpoint already available:
- * GET /api/customers/:customerId/summary?year=YYYY&month=M
- */
-
-// function decodeJwtGetId(token) {
-//   try {
-//     const payload = token.split(".")[1];
-//     const json = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/")));
-//     return json.id || json._id || json.sub || null;
-//   } catch {
-//     return null;
-//   }
-// }
 
 function decodeJwt(token) {
   try {
@@ -116,37 +95,37 @@ const Customer = () => {
     setMonth(m);
   }
 
-  const handleGenerateBill = async () => {
-    if (!customerId) return alert("Customer ID missing");
+const handleGenerateBill = async () => {
+  if (!customerId) return alert("Customer ID missing");
 
-    try {
-      const url = `import.meta.env.BACKEND/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
+  try {
+    const url = `${import.meta.env.VITE_BACKEND_URL}/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
 
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
 
-      if (!response.ok) {
-        return alert("Failed to generate PDF");
-      }
-
-      const blob = await response.blob();
-      const pdfURL = window.URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = pdfURL;
-      a.download = `MilkBill_${year}-${month}.pdf`;
-      a.click();
-
-      window.URL.revokeObjectURL(pdfURL);
-    } catch (err) {
-      console.error(err);
-      alert("Error generating bill");
+    if (!response.ok) {
+      return alert("Failed to generate PDF");
     }
-  };
+
+    const blob = await response.blob();
+    const pdfURL = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = pdfURL;
+    a.download = `MilkBill_${year}-${month}.pdf`;
+    a.click();
+
+    window.URL.revokeObjectURL(pdfURL);
+  } catch (err) {
+    console.error(err);
+    alert("Error generating bill");
+  }
+};
 
 
   return (

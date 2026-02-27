@@ -120,7 +120,7 @@ const Customer = () => {
     if (!customerId) return alert("Customer ID missing");
 
     try {
-      const url = `http://localhost:5001/api/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
+      const url = `import.meta.env.BACKEND/pdf/customers/${customerId}/generate-bill?month=${month}&year=${year}`;
 
       const response = await fetch(url, {
         method: "GET",

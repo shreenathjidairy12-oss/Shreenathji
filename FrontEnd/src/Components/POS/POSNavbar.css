@@ -1,0 +1,151 @@
+.pos-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 16px 32px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.pos-nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.pos-nav-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2d3748;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.pos-nav-title:hover {
+    color: #667eea;
+}
+
+.pos-nav-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.pos-nav-link {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pos-nav-link:hover {
+    background: #f7fafc;
+    color: #667eea;
+}
+
+.pos-nav-link.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.cart-badge {
+    background: #e53e3e;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 4px;
+}
+
+.pos-nav-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.back-to-landing-btn {
+    background: #e2e8f0;
+    color: #2d3748;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-to-landing-btn:hover {
+    background: #cbd5e0;
+    transform: translateX(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .pos-navbar {
+        padding: 14px 24px;
+    }
+
+    .pos-nav-title {
+        font-size: 20px;
+    }
+
+    .back-to-landing-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-navbar {
+        flex-wrap: wrap;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .pos-nav-left {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pos-nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .pos-nav-link {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .pos-nav-right {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-nav-title {
+        font-size: 18px;
+    }
+
+    .pos-nav-link {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,63 @@
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+.input-card {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  align-items: center;
+}
+
+.input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: rgb(251, 221, 221);
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.card {
+  background: white;
+  color: #111827;  /* BLACK text */
+  padding: 38px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table-card th,
+.table-card td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 30px;
+}
+
+.table-card th {
+  background: #f1f5f9;
+}
+
+.loading {
+  margin-top: 20px;
+}

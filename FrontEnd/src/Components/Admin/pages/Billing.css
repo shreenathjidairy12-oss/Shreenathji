@@ -1,0 +1,34 @@
+.billing-page {
+  margin-top: 20px;
+}
+
+.billing-card {
+  background: rgb(24, 20, 20);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.billing-filters {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.billing-table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+.billing-table th {
+  background: #1b1b1c;
+  padding: 12px;
+  text-align: left;
+}
+
+.billing-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}

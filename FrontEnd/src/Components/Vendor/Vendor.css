@@ -1,0 +1,348 @@
+.vendor-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  margin: 0;
+}
+
+.vendor-header-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.vendor-page {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 32px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.vendor-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #2d3748;
+  text-align: center;
+}
+
+.vendor-filters-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.filter-group select {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  background: #f7fafc;
+  color: #2d3748;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.fetch-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.fetch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.fetch-btn:active {
+  transform: translateY(0);
+}
+
+.customer-list-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.customer-item {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.customer-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.customer-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+.customer-mobile {
+  font-size: 14px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.empty-text {
+  text-align: center;
+  color: #a0aec0;
+  font-size: 16px;
+  padding: 60px 20px;
+  grid-column: 1 / -1;
+}
+
+/* Vendor Calendar Styles */
+.vendor-calendar {
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.calendar-header h2 {
+  font-size: 24px;
+  margin: 0 0 8px 0;
+  color: #2d3748;
+}
+
+.milk-type {
+  font-size: 14px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.vc-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.vc-head {
+  text-align: center;
+  font-weight: 600;
+  color: #4a5568;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.vc-cell {
+  background: #f7fafc;
+  border-radius: 10px;
+  min-height: 100px;
+  padding: 12px;
+  cursor: pointer;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.vc-cell:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.vc-cell.filled {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  color: white;
+}
+
+.vc-cell.filled:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.vc-day {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.vc-cell.filled .vc-day {
+  color: white;
+}
+
+.vc-litres {
+  font-size: 20px;
+  font-weight: 700;
+  color: #667eea;
+  margin-top: 8px;
+}
+
+.vc-cell.filled .vc-litres {
+  color: white;
+}
+
+.vc-cell.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .vendor-filters-card {
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    min-width: 200px;
+  }
+
+  .fetch-btn {
+    width: 100%;
+  }
+
+  .customer-list-card {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .vendor-header {
+    padding: 16px 20px;
+  }
+
+  .vendor-header-title {
+    font-size: 22px;
+  }
+
+  .vendor-page {
+    padding: 20px;
+  }
+
+  .vendor-title {
+    font-size: 26px;
+  }
+
+  .vendor-filters-card {
+    padding: 20px;
+  }
+
+  .customer-list-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .vc-grid {
+    gap: 8px;
+  }
+
+  .vc-cell {
+    min-height: 80px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vendor-header {
+    padding: 12px 16px;
+  }
+
+  .vendor-header-title {
+    font-size: 18px;
+  }
+
+  .vendor-page {
+    padding: 16px;
+  }
+
+  .vendor-title {
+    font-size: 22px;
+  }
+
+  .vendor-filters-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .filter-group label {
+    font-size: 13px;
+  }
+
+  .filter-group select {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .fetch-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .vc-head {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .vc-cell {
+    min-height: 70px;
+    padding: 6px;
+  }
+
+  .vc-day {
+    font-size: 12px;
+  }
+
+  .vc-litres {
+    font-size: 16px;
+  }
+}

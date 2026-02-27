@@ -1,0 +1,303 @@
+.pos-bills-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.pos-bills-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.pos-bills-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.no-bill {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.no-bill p {
+    font-size: 20px;
+    color: #718096;
+    margin-bottom: 24px;
+}
+
+.back-to-products-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.back-to-products-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.bill-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.action-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.print-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.print-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.download-btn {
+    background: #48bb78;
+    color: white;
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+}
+
+.back-btn {
+    background: #e2e8f0;
+    color: #2d3748;
+}
+
+.back-btn:hover {
+    background: #cbd5e0;
+}
+
+.bill-preview {
+    background: white;
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.bill-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.dairy-name {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.dairy-subtitle {
+    font-size: 16px;
+    color: #718096;
+}
+
+.bill-info,
+.customer-info {
+    margin-bottom: 24px;
+}
+
+.bill-info-row,
+.customer-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 15px;
+}
+
+.label {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.value {
+    color: #2d3748;
+}
+
+.customer-info {
+    background: #f7fafc;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.bill-items {
+    margin: 32px 0;
+}
+
+.bill-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bill-table thead th {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.bill-table tbody td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #4a5568;
+}
+
+.bill-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.bill-total {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.total-label {
+    color: #4a5568;
+}
+
+.total-value {
+    color: #667eea;
+}
+
+.bill-footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.bill-footer p {
+    font-size: 16px;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.footer-note {
+    font-size: 14px;
+    color: #718096;
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .pos-bills-page {
+        background: white;
+    }
+
+    .pos-bills-container {
+        padding: 0;
+    }
+
+    .pos-bills-title {
+        display: none;
+    }
+
+    .bill-preview {
+        box-shadow: none;
+        padding: 20px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pos-bills-container {
+        padding: 20px;
+    }
+
+    .pos-bills-title {
+        font-size: 24px;
+    }
+
+    .bill-actions {
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+
+    .bill-preview {
+        padding: 24px;
+    }
+
+    .dairy-name {
+        font-size: 24px;
+    }
+
+    .bill-table {
+        font-size: 14px;
+    }
+
+    .bill-table thead th,
+    .bill-table tbody td {
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-bills-container {
+        padding: 16px;
+    }
+
+    .bill-preview {
+        padding: 20px;
+    }
+
+    .dairy-name {
+        font-size: 20px;
+    }
+
+    .bill-table {
+        font-size: 12px;
+    }
+
+    .total-row {
+        font-size: 20px;
+    }
+}

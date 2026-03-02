@@ -36,7 +36,7 @@ export default function AddVendor() {
     <div className="add-page">
       <h2 className="page-title">➕ Add Vendor</h2>
 
-      <div className="card">
+      <div className="cardVendor">
         <form onSubmit={handleSubmit}>
           <label>Name</label>
           <input className="input" value={form.name} onChange={e => handleChange("name", e.target.value)} />

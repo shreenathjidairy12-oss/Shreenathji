@@ -5,6 +5,7 @@ import axios from "axios";
 import { API } from "@/config/api";
 import "./Login.css";
 import logo from "../../assets/logo.png";
+
 export default function Login() {
   const navigate = useNavigate();
 
@@ -13,15 +14,34 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
-  const loginStaff = async (payload) => {
-    return await axios.post(`${API}/auth/staff/login`, payload);
+  /* ---------------- FIX AUTO SELECT (AUTOFILL) ---------------- */
+
+  const fixAutoSelect = (e) => {
+    const input = e.target;
+
+    requestAnimationFrame(() => {
+      if (
+        input.selectionStart === 0 &&
+        input.selectionEnd === input.value.length
+      ) {
+        input.setSelectionRange(
+          input.value.length,
+          input.value.length
+        );
+      }
+    });
   };
 
-  const loginCustomer = async (payload) => {
-    return await axios.post(`${API}/auth/customer/login`, payload);
-  };
+  /* ------------------------------------------------------------ */
+
+  const loginStaff = (payload) =>
+    axios.post(`${API}/auth/staff/login`, payload);
+
+  const loginCustomer = (payload) =>
+    axios.post(`${API}/auth/customer/login`, payload);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,14 +71,15 @@ export default function Login() {
           password: form.password,
         });
       } else {
-        response = await loginCustomer({ mobile: form.mobile.trim() });
+        response = await loginCustomer({
+          mobile: form.mobile.trim(),
+        });
       }
+
       const data = response?.data;
 
-      // Store token
       localStorage.setItem("token", data.token);
 
-      // Store role and navigate based on role
       if (data?.staff?.role === "shopkeeper") {
         localStorage.setItem("role", "shopkeeper");
         navigate("/shopkeeper", { replace: true });
@@ -70,104 +91,192 @@ export default function Login() {
         navigate("/customer", { replace: true });
       }
     } catch (err) {
-      const msg = err?.response?.data?.message || "Invalid Email Or Password!";
+      const msg =
+        err?.response?.data?.message || "Invalid Email Or Password!";
       setError(msg);
-      console.error("Login error:", err);
     }
 
     setLoading(false);
   };
 
   return (
-    <div className="page-bg">
-      <div className="card">
-        <div className="card-top">
-          <div className="logo">
-            <img src={logo} alt="Logo" />
+    <div className="dairy-login-page">
+
+      {/* animated background blobs */}
+      <div className="dairy-login-bg">
+        <span className="blob blob-1" />
+        <span className="blob blob-2" />
+        <span className="blob blob-3" />
+      </div>
+
+      <div className="dairy-login-wrapper">
+
+        {/* LEFT BRAND PANEL */}
+        <div className="dairy-login-brand">
+          <img src={logo} className="dairy-login-logo" alt="logo" />
+
+          <h1>Shreenathji Dairy</h1>
+          <p>Farm & Milk Management Platform</p>
+
+          <div className="dairy-login-badge">
+            Fresh • Trusted • Daily
           </div>
-          <h1 className="title">Shrinathji Dairy</h1>
-          <div className="subtitle">FARM MANAGEMENT SYSTEM</div>
         </div>
 
-        <div className="card-body">
-          <div className="tabs">
+        {/* FORM PANEL */}
+        <div className="dairy-login-card">
+
+          <div className="dairy-login-tabs">
+            <div
+              className="dairy-login-tab-indicator"
+              style={{
+                transform:
+                  role === "shopkeeper"
+                    ? "translateX(0%)"
+                    : "translateX(100%)",
+              }}
+            />
+
             <button
-              className={`tab ${role === "shopkeeper" ? "active" : ""}`}
+              type="button"
+              className={`dairy-login-tab ${
+                role === "shopkeeper" ? "active" : ""
+              }`}
               onClick={() => {
                 setRole("shopkeeper");
                 setError("");
               }}
-              type="button"
             >
               Shop Login
             </button>
 
             <button
-              className={`tab ${role === "customer" ? "active" : ""}`}
+              type="button"
+              className={`dairy-login-tab ${
+                role === "customer" ? "active" : ""
+              }`}
               onClick={() => {
                 setRole("customer");
                 setError("");
               }}
-              type="button"
             >
               Customer Login
             </button>
           </div>
 
-          <form className="form" onSubmit={handleSubmit} noValidate>
-            {role === "customer" ? (
-              <>
-                <label className="label">MOBILE NUMBER</label>
-                <div className="input-row">
-                  <span className="input-icon">📱</span>
-                  <input
-                    name="mobile"
-                    className="input"
-                    type="tel"
-                    placeholder="Enter mobile number"
-                    value={form.mobile}
-                    onChange={onChange}
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                <label className="label">USERNAME</label>
-                <div className="input-row">
-                  <span className="input-icon">👤</span>
-                  <input
-                    name="email"
-                    className="input"
-                    type="email"
-                    placeholder="Enter username"
-                    value={form.email}
-                    onChange={onChange}
-                  />
-                </div>
+          <form className="dairy-login-form" onSubmit={handleSubmit}>
 
-                <label className="label">PASSWORD</label>
-                <div className="input-row">
-                  <span className="input-icon">🔒</span>
-                  <input
-                    name="password"
-                    className="input"
-                    type="password"
-                    placeholder="Enter password"
-                    value={form.password}
-                    onChange={onChange}
-                  />
-                </div>
-              </>
-            )}
+            <div key={role} className="dairy-login-fields animated">
 
-            <button className="btn" type="submit" disabled={loading}>
-              {loading ? "Please wait..." : "Login →"}
+              {role === "customer" ? (
+                <>
+                  <label className="dairy-login-label">Mobile number</label>
+
+                  <div className="dairy-login-input">
+                    <span className="dairy-login-icon">
+                      <MobileIcon />
+                    </span>
+
+                    <input
+                      type="tel"
+                      name="mobile"
+                      placeholder="Enter mobile number"
+                      value={form.mobile}
+                      onChange={onChange}
+                      onFocus={fixAutoSelect}
+                      onMouseUp={fixAutoSelect}
+                      autoComplete="tel"
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <label className="dairy-login-label">Username</label>
+
+                  <div className="dairy-login-input">
+                    <span className="dairy-login-icon">
+                      <UserIcon />
+                    </span>
+
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter username"
+                      value={form.email}
+                      onChange={onChange}
+                      onFocus={fixAutoSelect}
+                      onMouseUp={fixAutoSelect}
+                      autoComplete="username"
+                    />
+                  </div>
+
+                  <label className="dairy-login-label">Password</label>
+
+                  <div className="dairy-login-input">
+                    <span className="dairy-login-icon">
+                      <LockIcon />
+                    </span>
+
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Enter password"
+                      value={form.password}
+                      onChange={onChange}
+                      onFocus={fixAutoSelect}
+                      onMouseUp={fixAutoSelect}
+                      autoComplete="current-password"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="dairy-login-btn"
+              disabled={loading}
+            >
+              {loading ? "Signing in..." : "Login"}
             </button>
 
-            {error && <div className="error">{error}</div>}
+            {error && (
+              <div className="dairy-login-error">
+                {error}
+              </div>
+            )}
           </form>
         </div>
       </div>
     </div>
+  );
+}
+
+/* ---------------- ICONS ---------------- */
+
+function UserIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2"/>
+      <path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function LockIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" strokeWidth="2"/>
+      <path d="M8 11V7a4 4 0 118 0v4" stroke="currentColor" strokeWidth="2"/>
+    </svg>
+  );
+}
+
+function MobileIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" strokeWidth="2"/>
+      <circle cx="12" cy="18" r="1" fill="currentColor"/>
+    </svg>
   );
 }

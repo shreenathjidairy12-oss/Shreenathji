@@ -25,7 +25,7 @@ export default function DailySummary() {
     <div className="admin-page">
       <h2 className="page-title">📅 Daily Summary</h2>
 
-      <div className="card input-card">
+      <div className="cardDailySummary input-card">
         <input
           type="date"
           value={date}
@@ -41,13 +41,13 @@ export default function DailySummary() {
 
       {summary && (
         <div className="summary-wrapper">
-          <div className="card info-card">
+          <div className="cardDailySummary info-card">
             <h3>Date: {summary.date}</h3>
             <p><strong>Total Milk Sold:</strong> {summary.totalLitres} L</p>
             <p><strong>Total Customers:</strong> {summary.totalCustomersServed}</p>
           </div>
 
-          <div className="card table-card">
+          <div className="cardDailySummary table-card">
             <h3>Customer Breakdown</h3>
             <table>
               <thead>
@@ -64,7 +64,7 @@ export default function DailySummary() {
             </table>
           </div>
 
-          <div className="card table-card">
+          <div className="cardDailySummary table-card">
             <h3>Vendor Breakdown</h3>
             {summary.vendorBreakdown.length === 0 ? (
               <p>No vendor data for this date.</p>

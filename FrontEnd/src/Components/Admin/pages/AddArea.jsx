@@ -40,7 +40,7 @@ export default function AddArea() {
     <div className="add-page">
       <h2 className="page-title">➕ Add Area</h2>
 
-      <div className="card">
+      <div className="cardArea">
         <form onSubmit={handleSubmit}>
           <label>Area Name</label>
           <input className="input" value={name} onChange={e => setName(e.target.value)} />

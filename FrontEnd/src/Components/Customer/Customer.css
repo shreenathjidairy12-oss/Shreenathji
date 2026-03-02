@@ -1,320 +1,319 @@
-/* Customer Dashboard Root */
+/* ================================
+   Royal Blue Premium Calendar
+   Equal Size Boxes – Final
+================================ */
+
+:root {
+  --royal: #1f3cff;
+  --royal-dark: #0b1fd1;
+  --royal-soft: #eef2ff;
+
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --muted: #64748b;
+  --white: #ffffff;
+  --bg: #f6f8ff;
+}
+
+/* ================================
+   Root & Layout
+================================ */
+
 .cd-root {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 24px;
-  margin: 0;
-  box-sizing: border-box;
+  background: var(--bg);
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .cd-logout-wrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-/* Customer Name */
-.cd-customer-name {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #2d3748;
-}
+/* ================================
+   Header
+================================ */
 
-/* Header container */
 .cd-header {
   width: 100%;
-  max-width: 1200px;
-  background: white;
-  padding: 24px;
+  max-width: 1100px;
+  background: var(--white);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  margin-bottom: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 18px;
+  box-sizing: border-box;
 }
 
-/* Month navigation */
+/* customer name */
+
+.cd-customer-name {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--royal-dark);
+  margin-bottom: 12px;
+}
+
+/* month bar */
+
 .cd-title {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 19px;
 }
 
-/* Navigation buttons */
+.cd-month {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--royal);
+}
+
 .cd-nav {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--royal);
   color: white;
   border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 26px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-.cd-nav:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
+/* ================================
+   Summary
+================================ */
 
-.cd-nav:active {
-  transform: translateY(0);
-}
-
-/* Month title */
-.cd-month {
-  font-size: 32px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Summary containers */
 .cd-summary {
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .cd-summary-item {
-  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-  padding: 14px 20px;
-  border-radius: 12px;
-  border: 2px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  font-size: 16px;
-  font-weight: 600;
-  color: #2d3748;
+  background: var(--royal-soft);
+  border: 1px solid #dbe2ff;
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--royal-dark);
+  width: 25%;
 }
 
-/* Bill Button */
 .cd-bill-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--royal);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 14px;
   border-radius: 10px;
+  font-weight: bolder;
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  width: 25%;
 }
 
-.cd-bill-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
+/* ================================
+   Calendar Table
+================================ */
 
-/* Calendar table */
 .cd-table {
   width: 100%;
-  max-width: 1200px;
-  border-collapse: collapse;
-  margin: 24px auto 0;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 1100px;
+  border-collapse: separate;
+  border-spacing: 8px;
+  /* force equal columns */
+  table-layout: fixed;
 }
 
+/* equal column width */
+.cd-table th,
+.cd-table td {
+  width: 14.2857%;
+}
+
+/* ================================
+Days header
+================================ */
+
 .cd-table thead th {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--royal);
   color: white;
-  padding: 16px;
-  font-weight: 600;
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px 4px;
+  border-radius: 8px;
+  height: 42px;
+  line-height: 1;
   text-align: center;
 }
 
-/* Calendar cells */
-.cd-cell {
-  border: 1px solid #e2e8f0;
-  height: 100px;
-  position: relative;
-  padding: 12px;
-  vertical-align: top;
-  background: white;
-  transition: all 0.3s ease;
-}
+/* ================================
+   Cells (equal size)
+================================ */
 
-.cd-cell:hover {
-  background: #f7fafc;
+.cd-cell,
+.cd-empty {
+  height: 110px;
+  min-height: 110px;
+  max-height: 110px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  padding: 8px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
 }
 
 .cd-empty {
-  background: #f7fafc;
+  background: #f4f6ff;
 }
+
+/* ================================
+   Day number
+================================ */
 
 .cd-daynum {
-  position: absolute;
-  left: 10px;
-  top: 8px;
-  font-weight: 700;
-  font-size: 16px;
-  color: #4a5568;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--royal-dark);
 }
 
-/* Litre display */
-.cd-dayinfo {
-  position: absolute;
-  bottom: 8px;
-  left: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #667eea;
-}
+/* ================================
+   Today highlight
+================================ */
 
-/* Today's highlight */
 .cd-today {
-  background: linear-gradient(135deg, #edf2f7 0%, #e6fffa 100%);
-  outline: 2px solid #667eea;
+  box-shadow: inset 0 0 0 2px var(--royal);
 }
 
-/* Note text */
-.cd-note {
-  margin-top: 16px;
-  text-align: center;
-  font-size: 14px;
-  color: #718096;
+/* ================================
+   Milk taken – WHOLE BOX highlighted
+================================ */
+
+.cd-has-milk {
+  background: linear-gradient(160deg, #2f52ff 0%, #1f3cff 100%);
+  border: none;
+  color: white;
+  box-shadow: 0 8px 20px rgba(31, 60, 255, 0.25);
 }
+
+.cd-has-milk .cd-daynum {
+  color: white;
+}
+
+/* milk info */
+
+.cd-milk-info {
+  margin-top: 8px;
+  padding: 15px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cd-milk-litres {
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+}
+
+.cd-milk-vendor {
+  font-size: 11px;
+  font-weight: 600;
+  color: #eef2ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================================
+   Loading & error
+================================ */
 
 .cd-loading,
 .cd-error {
+  width: 100%;
+  max-width: 1100px;
   text-align: center;
-  padding: 20px;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 13px;
+  padding: 10px;
 }
 
 .cd-error {
-  color: #e53e3e;
+  color: #dc2626;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .cd-root {
-    padding: 16px;
-  }
+/* ================================
+   Responsive
+================================ */
 
-  .cd-header {
-    padding: 20px;
+@media (max-width: 900px) {
+  .cd-cell,
+  .cd-empty {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
   }
+}
 
-  .cd-customer-name {
-    font-size: 24px;
-  }
-
-  .cd-month {
-    font-size: 26px;
-  }
-
-  .cd-nav {
-    padding: 8px 14px;
-    font-size: 18px;
-  }
+@media (max-width: 650px) {
 
   .cd-summary {
-    gap: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 2%;
   }
 
-  .cd-summary-item {
-    padding: 12px 16px;
-    font-size: 14px;
+  .cd-cell,
+  .cd-empty {
+    height: 92px;
+    min-height: 92px;
+    max-height: 92px;
+  }
+}
+
+@media (max-width: 430px) {
+
+  .cd-table {
+    display: block;
+    overflow-x: auto;
   }
 
-  .cd-table thead th {
-    padding: 12px 8px;
-    font-size: 14px;
-  }
-
-  .cd-cell {
+  .cd-cell,
+  .cd-empty {
+    min-width: 78px;
     height: 80px;
-    padding: 8px;
-  }
-
-  .cd-daynum {
-    font-size: 14px;
-  }
-
-  .cd-dayinfo {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 480px) {
-  .cd-root {
-    padding: 12px;
-  }
-
-  .cd-header {
-    padding: 16px;
-  }
-
-  .cd-customer-name {
-    font-size: 20px;
-  }
-
-  .cd-title {
-    gap: 12px;
-  }
-
-  .cd-month {
-    font-size: 22px;
-  }
-
-  .cd-nav {
-    padding: 6px 12px;
-    font-size: 16px;
-  }
-
-  .cd-summary {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .cd-summary-item {
-    padding: 10px 14px;
-    font-size: 13px;
+    min-height: 80px;
+    max-height: 80px;
   }
 
   .cd-bill-btn {
-    padding: 10px 20px;
-    font-size: 14px;
+    width: 100%;
   }
 
-  .cd-table thead th {
-    padding: 10px 6px;
-    font-size: 12px;
+  .cd-summary{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+    gap: 12px;
   }
-
-  .cd-cell {
-    height: 70px;
-    padding: 6px;
-  }
-
-  .cd-daynum {
-    font-size: 12px;
-    left: 6px;
-    top: 6px;
-  }
-
-  .cd-dayinfo {
-    font-size: 12px;
-    left: 6px;
-    bottom: 6px;
+  .cd-summary-item {
+    width: 95%;
+    
   }
 }

@@ -1,184 +1,310 @@
-/* Page background */
-.page-bg {
+/* ===================================================
+   DAIRY LOGIN – ROYAL BLUE / ANIMATED THEME
+=================================================== */
+
+.dairy-login-page {
   min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #eef3ff, #f9fbff);
   display: flex;
-  width: 100vw;
   align-items: center;
   justify-content: center;
-  background: #06081a;
+  padding: 18px;
   box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
 }
 
-/* Main card */
-.card {
-  width: 420px;
-  border-radius: 12px;
+/* ================= WRAPPER ================= */
+
+.dairy-login-wrapper {
+  width: 100%;
+  max-width: 980px;
+  min-height: 540px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #ffffff;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
-  background: linear-gradient(180deg, #2e73ff 0%, #2b6af8 100%);
+  box-shadow: 0 25px 70px rgba(13, 37, 76, 0.15);
+  animation: dairyLoginFade 0.5s ease;
 }
 
-/* Top blue header */
-.card-top {
-  background: linear-gradient(180deg, #2e73ff 0%, #2b6af8 100%);
-  padding: 34px 24px 24px;
-  text-align: center;
-  color: white;
+@keyframes dairyLoginFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.logo {
-  /* width: 56px; */
-  height: 56px;
-  border-radius: 15px;
-  /* background: rgba(255, 255, 255, 0.12); */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 38px;
-  margin-bottom: 12px;
-}
+/* ================= LEFT PANEL ================= */
 
-.logo img {
-  height: 150px;
-  width: 250px;
-  margin-top: 50px;
-  /* margin-bottom: 50px; */
-}
+.dairy-login-brand {
+  background: linear-gradient(160deg, #0b3d91, #1654c0);
+  color: #ffffff;
+  padding: 48px 40px;
 
-.title {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-}
-
-.subtitle {
-  font-size: 12px;
-  margin-top: 6px;
-  opacity: 0.9;
-  letter-spacing: 1px;
-}
-
-/* Body - dark card area with inputs */
-.card-body {
-  background: #0f1720;
-  padding: 22px;
-  color: #cbd5e1;
-}
-
-/* Tabs (Admin/Customer) */
-.tabs {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 18px;
-  background: rgba(255, 255, 255, 0.02);
-  padding: 8px;
-  border-radius: 10px;
-}
-
-.tab {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: transparent;
-  color: #9aa6b6;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 160ms ease;
-}
-
-.tab.active {
-  background: rgba(255, 255, 255, 0.06);
-  color: #e6eefc;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
-}
-
-/* Form */
-.form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Labels */
-.label {
-  font-size: 11px;
-  color: #93a4b6;
+.dairy-login-logo {
+  width: 190px;
+  max-width: 80%;
+  margin-bottom: 26px;
+  animation: dairyLogoFloat 4s ease-in-out infinite;
+}
+
+@keyframes dairyLogoFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.dairy-login-brand h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.dairy-login-brand p {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.dairy-login-badge {
+  margin-top: 26px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ================= RIGHT CARD ================= */
+
+.dairy-login-card {
+  padding: 44px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background:
+    radial-gradient(circle at top right, rgba(22,84,192,0.08), transparent 40%),
+    #ffffff;
+}
+
+/* ================= TABS ================= */
+
+.dairy-login-tabs {
+  position: relative;
+  display: flex;
+  background: #f1f5ff;
+  border-radius: 12px;
+  padding: 5px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.dairy-login-tab-indicator {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(50% - 5px);
+  height: calc(100% - 10px);
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(11,61,145,0.18);
+  transition: transform 1 s cubic-bezier(.4,0,.2,1);
+  z-index: 0;
+}
+
+.dairy-login-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
   font-weight: 700;
-  letter-spacing: 0.9px;
-  margin-bottom: 6px;
+  color: #5f77a6;
+  transition: color 0.5s ease;
+  position: relative;
+  z-index: 1;
 }
 
-/* Input row */
-.input-row {
+.dairy-login-tab.active {
+  color: #0b3d91;
+}
+
+/* ================= FORM ================= */
+
+.dairy-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* animated field wrapper */
+.dairy-login-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dairy-login-fields.animated {
+  animation: fieldsIn 1.5s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes fieldsIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dairy-login-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4b5f86;
+}
+
+/* ================= INPUT ================= */
+
+.dairy-login-input {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.02);
-  padding: 10px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid #dbe4f6;
+  padding: 12px 14px;
+  background: #f8faff;
+  transition: all 0.25s ease;
 }
 
-/* icon left inside input */
-.input-icon {
-  font-size: 16px;
-  opacity: 0.8;
+.dairy-login-input:focus-within {
+  border-color: #0b3d91;
+  box-shadow: 0 0 0 4px rgba(11,61,145,0.12);
+  background: #ffffff;
+  transform: translateY(-1px);
 }
 
-/* actual input field */
-.input {
+.dairy-login-icon {
+  color: #0b3d91;
+  display: flex;
+}
+
+.dairy-login-input input:-webkit-autofill,
+.dairy-login-input input:-webkit-autofill:hover,
+.dairy-login-input input:-webkit-autofill:focus,
+.dairy-login-input input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: #0b234f !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.dairy-login-input input {
   flex: 1;
-  background: transparent;
   border: none;
   outline: none;
-  color: #e6eefc;
   font-size: 14px;
+  background: transparent;
+  color: #0b234f;
 }
 
-/* Button */
-.btn {
-  margin-top: 8px;
-  width: 100%;
-  padding: 12px 18px;
-  border-radius: 10px;
+/* ================= BUTTON ================= */
+
+.dairy-login-btn {
+  margin-top: 12px;
+  height: 46px;
+  border-radius: 12px;
   border: none;
-  background: linear-gradient(90deg, #2f74ff, #2b6af8);
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
   cursor: pointer;
-  transition: transform 140ms ease, box-shadow 140ms ease;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+
+  background: linear-gradient(90deg, #0b3d91, #1654c0);
+
+  box-shadow: 0 14px 30px rgba(11,61,145,0.35);
+  transition: all 0.25s ease;
 }
 
-.btn:active {
-  transform: translateY(1px);
+.dairy-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(11,61,145,0.45);
 }
-.btn:disabled {
-  opacity: 0.75;
+
+.dairy-login-btn:disabled {
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Error text */
-.error {
+/* ================= ERROR ================= */
+
+.dairy-login-error {
   margin-top: 10px;
-  color: #ffb4b4;
+  background: #fff3f3;
+  border: 1px solid #ffd2d2;
+  color: #cc2f2f;
+  padding: 10px 12px;
+  border-radius: 10px;
   font-size: 13px;
-  background: rgba(255, 0, 0, 0.03);
-  padding: 8px 10px;
-  border-radius: 8px;
+  animation: errorPop 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .card {
-    width: 92%;
+@keyframes errorPop {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
   }
-  .card-top {
-    padding: 28px 16px 18px;
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+  .dairy-login-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .dairy-login-brand {
+    padding: 36px 24px;
+  }
+
+  .dairy-login-card {
+    padding: 34px 26px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .dairy-login-logo {
+    width: 150px;
+  }
+
+  .dairy-login-brand h1 {
+    font-size: 24px;
+  }
+
+  .dairy-login-tabs {
+    margin-bottom: 20px;
   }
 }

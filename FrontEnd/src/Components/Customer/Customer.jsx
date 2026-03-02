@@ -143,7 +143,7 @@ const handleGenerateBill = async () => {
         </div>
         <div className="cd-summary">
           <div className="cd-customer-name">
-            Welcome, <strong>{customerName}</strong>
+            Welcome, <strong>{customerName}{"😊"}</strong>
           </div>
 
           <div className="cd-summary-item">Total Litres: <strong>{summary ? summary.totalLitres : "—"}</strong></div>
@@ -160,12 +160,6 @@ const handleGenerateBill = async () => {
 
       <Calendar year={year} month={month} dailyEntries={summary ? summary.daily : []} />
 
-      <div className="cd-note">Hover a cell that has entries to see vendor name (shown on hover).</div>
-
-      <details style={{ marginTop: 12 }}>
-        <summary>Cached months (debug)</summary>
-        <pre>{JSON.stringify(Object.keys(cache), null, 2)}</pre>
-      </details>
     </div>
   );
 };

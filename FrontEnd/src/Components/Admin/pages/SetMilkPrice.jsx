@@ -33,7 +33,7 @@ export default function SetMilkPrice() {
     <div className="add-page">
       <h2 className="page-title">🥛 Set Milk Price</h2>
 
-      <div className="card">
+      <div className="cardMilk">
         <form onSubmit={handleSubmit}>
           <label>Milk Type</label>
           <select className="input" value={type} onChange={(e) => setType(e.target.value)}>

@@ -43,7 +43,7 @@
 .loading,
 .error {
     text-align: center;
-    padding: 40px;
+    /* padding: 40px; */
     font-size: 18px;
     color: #718096;
 }

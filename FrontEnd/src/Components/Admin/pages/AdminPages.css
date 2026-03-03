@@ -175,9 +175,9 @@
 .error-message {
     background: #fed7d7;
     color: #742a2a;
-    padding: 12px 16px;
+    /* padding: 12px 16px; */
     border-radius: 8px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     border-left: 4px solid #e53e3e;
 }
 

@@ -59,12 +59,12 @@ label {
   color: #2563eb;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 6px;
+  /* margin-top: 6px; */
 }
 
 .error {
-  margin-top: 10px;
-  padding: 8px 10px;
+  /* margin-top: 10px; */
+  /* padding: 8px 10px; */
   border-radius: 8px;
   background: #fee2e2;
   color: #991b1b;

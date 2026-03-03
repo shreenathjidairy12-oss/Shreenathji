@@ -45,8 +45,8 @@ label {
 }
 
 .error {
-  margin-top: 10px;
-  padding: 8px 10px;
+  /* margin-top: 10px; */
+  /* padding: 8px 10px; */
   border-radius: 8px;
   background: #fee2e2;
   color: #991b1b;

@@ -5,7 +5,7 @@ import { useCart } from "./context/CartContext";
 import { getItems, addItem, updateItemPrice, deleteItem } from "./api/posApi";
 import { ToastContainer, toast } from "react-toastify";
 import "./POSProducts.css";
-import { set } from "mongoose";
+
 
 export default function POSProducts() {
     const navigate = useNavigate();

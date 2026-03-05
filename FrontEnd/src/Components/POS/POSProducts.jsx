@@ -429,11 +429,11 @@ export default function POSProducts() {
                                     <button type="submit" className="submit-btn" onClick={() => setShowEditModal(true)}>
                                         Update Price
                                     </button>
-                                </div>
-                            </form>
                                     <button type="delete" className="delete-btn" onClick={() => setShowdeleteModal(editingProduct)}>
                                         Delete Item
                                     </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 )

@@ -22,81 +22,87 @@ import SetMilkPrice from "./Components/Admin/pages/SetMilkPrice";
 import POSProducts from "./Components/POS/POSProducts";
 import POSCart from "./Components/POS/POSCart";
 import POSBills from "./Components/POS/POSBills";
-
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-      {"just check"}
-      {/* SHOPKEEPER - Landing Page */}
-      <Route
-        path="/shopkeeper"
-        element={
-          <ProtectedRoute allowedRoles={['shopkeeper']}>
-            <AdminLanding />
-          </ProtectedRoute>
-        }
-      />
+    <>
 
-      {/* SHOPKEEPER - Milk Business Routes */}
-      <Route
-        path="/shopkeeper/milk"
-        element={
-          <ProtectedRoute allowedRoles={['shopkeeper']}>
-            <Admin />
-          </ProtectedRoute>
-        }
-      >
-        <Route path="daily-summary" element={<DailySummary />} />
-        <Route path="billing" element={<Billing />} />
-        <Route path="add-customer" element={<AddCustomer />} />
-        <Route path="add-vendor" element={<AddVendor />} />
-        <Route path="add-area" element={<AddArea />} />
-        <Route path="set-milk-price" element={<SetMilkPrice />} />
-      </Route>
-
-      {/* SHOPKEEPER - POS Routes */}
-      <Route
-        path="/shopkeeper/pos"
-        element={
-          <ProtectedRoute allowedRoles={['shopkeeper']}>
-            <POS />
-          </ProtectedRoute>
-        }
-      >
-        <Route path="products" element={<POSProducts />} />
-        <Route path="cart" element={<POSCart />} />
-        <Route path="bills" element={<POSBills />} />
-      </Route>
-
-      {/* VENDOR - Protected Routes */}
-      <Route
-        path="/vendor"
-        element={
-          <ProtectedRoute allowedRoles={['vendor']}>
-            <Vendor />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<VendorDashboard />} />
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        {"just check"}
+        {/* SHOPKEEPER - Landing Page */}
         <Route
-          path="customer/:customerId"
-          element={<VendorMilkCalendar />}
+          path="/shopkeeper"
+          element={
+            <ProtectedRoute allowedRoles={['shopkeeper']}>
+              <AdminLanding />
+            </ProtectedRoute>
+          }
         />
-      </Route>
 
-      {/* CUSTOMER - Protected Routes */}
-      <Route
-        path="/customer"
-        element={
-          <ProtectedRoute>
-            <Customer />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+        {/* SHOPKEEPER - Milk Business Routes */}
+        <Route
+          path="/shopkeeper/milk"
+          element={
+            <ProtectedRoute allowedRoles={['shopkeeper']}>
+              <Admin />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="daily-summary" element={<DailySummary />} />
+          <Route path="billing" element={<Billing />} />
+          <Route path="add-customer" element={<AddCustomer />} />
+          <Route path="add-vendor" element={<AddVendor />} />
+          <Route path="add-area" element={<AddArea />} />
+          <Route path="set-milk-price" element={<SetMilkPrice />} />
+        </Route>
+
+        {/* SHOPKEEPER - POS Routes */}
+        <Route
+          path="/shopkeeper/pos"
+          element={
+            <ProtectedRoute allowedRoles={['shopkeeper']}>
+              <POS />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="products" element={<POSProducts />} />
+          <Route path="cart" element={<POSCart />} />
+          <Route path="bills" element={<POSBills />} />
+        </Route>
+
+        {/* VENDOR - Protected Routes */}
+        <Route
+          path="/vendor"
+          element={
+            <ProtectedRoute allowedRoles={['vendor']}>
+              <Vendor />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<VendorDashboard />} />
+          <Route
+            path="customer/:customerId"
+            element={<VendorMilkCalendar />}
+          />
+        </Route>
+
+        {/* CUSTOMER - Protected Routes */}
+        <Route
+          path="/customer"
+          element={
+            <ProtectedRoute>
+              <Customer />
+            </ProtectedRoute>
+
+          }
+        />
+
+      </Routes>
+      <ToastContainer />
+    </>
   );
 }
 

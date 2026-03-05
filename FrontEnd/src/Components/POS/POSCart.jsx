@@ -70,7 +70,7 @@ export default function POSCart() {
             <POSNavbar cartItemCount={getCartItemCount()} />
 
             <div className="pos-cart-container">
-                <h1 className="pos-cart-title">🛒 Shopping Cart</h1>
+                <h1 className="pos-cart-title"> Shopping Cart</h1>
 
                 {cart.length === 0 ? (
                     <div className="empty-cart">
@@ -89,9 +89,12 @@ export default function POSCart() {
                             <h2 className="section-title">Cart Items</h2>
 
                             {cart.map((item) => (
+                                
                                 <div key={item._id} className="cart-item">
                                     <div className="cart-item-info">
                                         <h3 className="cart-item-name">{item.name}</h3>
+
+                                        <h3 className="cart-item-name">{item.availableQty}</h3>
                                         <div className="cart-item-price">
                                             ₹{item.price} / {item.unitType}
                                         </div>
@@ -101,7 +104,7 @@ export default function POSCart() {
                                         <div className="cart-quantity-selector">
                                             <button
                                                 className="cart-qty-btn"
-                                                onClick={() => updateQuantity(item._id, item.quantity - 1)}
+                                                onClick={() => updateQuantity(item._id, item.quantity - 1,item)}
                                             >
                                                 −
                                             </button>
@@ -110,13 +113,13 @@ export default function POSCart() {
                                                 min="1"
                                                 value={item.quantity}
                                                 onChange={(e) =>
-                                                    updateQuantity(item._id, parseInt(e.target.value) || 1)
+                                                    updateQuantity(item._id, parseInt(e.target.value) || 1,item)
                                                 }
                                                 className="cart-qty-input"
                                             />
                                             <button
                                                 className="cart-qty-btn"
-                                                onClick={() => updateQuantity(item._id, item.quantity + 1)}
+                                                onClick={() => updateQuantity(item._id, item.quantity + 1, item)}
                                             >
                                                 +
                                             </button>

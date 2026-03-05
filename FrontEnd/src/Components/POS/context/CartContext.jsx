@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const CartContext = createContext();
+
 
 export const useCart = () => {
     const context = useContext(CartContext);
@@ -48,7 +50,24 @@ export const CartProvider = ({ children }) => {
         setCart((prevCart) => prevCart.filter((item) => item._id !== itemId));
     };
 
-    const updateQuantity = (itemId, newQuantity) => {
+    const notify = (type, message) => {
+            if (type === "success") {
+                toast.success(message);
+            } else if (type === "error") {
+                toast.error(message);
+            }
+        }
+
+    const updateQuantity = (itemId, newQuantity,item) => {
+        console.log(newQuantity);
+        console.log(item);
+        
+        
+        if(newQuantity > item.availableQty){
+            // alert(`exceed limit`);
+            notify("error", "Exxceed the Limit");
+            return;
+        }
         if (newQuantity <= 0) {
             removeFromCart(itemId);
             return;

@@ -443,3 +443,16 @@
     width: 100%;
   }
 }
+
+
+.delete-btn{
+    flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+}

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import POSNavbar from "./POSNavbar";
 import { useCart } from "./context/CartContext";
-import { getItems, addItem, updateItemPrice } from "./api/posApi";
+import { getItems, addItem, updateItemPrice, deleteItem } from "./api/posApi";
+import { ToastContainer, toast } from "react-toastify";
 import "./POSProducts.css";
+import { set } from "mongoose";
 
 export default function POSProducts() {
     const navigate = useNavigate();
@@ -30,11 +32,21 @@ export default function POSProducts() {
         fetchProducts();
     }, []);
 
+    const notify = (type, message) => {
+        if (type === "success") {
+            toast.success(message);
+        } else if (type === "error") {
+            toast.error(message);
+        }
+    }
+
+
     const fetchProducts = async () => {
         try {
             setLoading(true);
             const data = await getItems();
             setProducts(data || []);
+
 
             // Initialize quantities
             const initialQuantities = {};
@@ -50,8 +62,17 @@ export default function POSProducts() {
         }
     };
 
-    const handleQuantityChange = (itemId, value) => {
-        const qty = parseInt(value) || 1;
+    const handleQuantityChange = (itemId, value, product) => {
+        // const quantity = quantities[product._id] ;
+        const qty = parseInt(value);
+        // console.log(product);
+
+        // const quantity = qty[product._id] || 1;
+        if (qty > product.availableQty) {
+        notify("error", `Only ${product.availableQty} ${product.unitType}(s) available`);
+
+            return;
+        }
         setQuantities((prev) => ({
             ...prev,
             [itemId]: Math.max(1, qty),
@@ -62,12 +83,12 @@ export default function POSProducts() {
         const quantity = quantities[product._id] || 1;
 
         if (quantity > product.availableQty) {
-            alert(`Only ${product.availableQty} ${product.unitType}(s) available!`);
+            notify("error", `Only ${product.availableQty} ${product.unitType}(s) available!`)
             return;
         }
 
         addToCart(product, quantity);
-        alert(`Added ${quantity} ${product.unitType}(s) of ${product.name} to cart!`);
+        notify("success",`Added ${quantity} ${product.unitType}(s) of ${product.name} to cart!` )
 
         // Reset quantity to 1
         setQuantities((prev) => ({
@@ -88,12 +109,14 @@ export default function POSProducts() {
                 image: formData.image || "",
             });
 
-            alert("Product added successfully!");
+            notify("success", "Product added successfully!");
+
             setShowAddModal(false);
             setFormData({ name: "", price: "", unitType: "number", availableQty: "", image: "" });
             fetchProducts();
         } catch (err) {
-            alert(err.response?.data?.msg || "Failed to add product");
+            notify("err", "Failed to add product");
+
         }
     };
 
@@ -101,15 +124,16 @@ export default function POSProducts() {
         e.preventDefault();
 
         try {
-            await updateItemPrice(editingProduct._id, parseFloat(formData.price));
+            await updateItemPrice(editingProduct._id, parseFloat(formData.price), parseFloat(formData.availableQty));
 
-            alert("Product price updated successfully!");
+            notify("success", "Product price & Quantity updated successfully!");
+
             setShowEditModal(false);
             setEditingProduct(null);
             setFormData({ name: "", price: "", unitType: "number", availableQty: "", image: "" });
             fetchProducts();
         } catch (err) {
-            alert(err.response?.data?.msg || "Failed to update product");
+            notify("error",err.response?.data?.msg || "Failed to update product" )
         }
     };
 
@@ -124,6 +148,22 @@ export default function POSProducts() {
         });
         setShowEditModal(true);
     };
+
+    const setShowdeleteModal = async (product) => {
+        try {
+            console.log(product._id);
+            
+            await deleteItem(product._id)
+            notify("success", "Product deleted successfully!");
+            fetchProducts();
+                    setShowEditModal(false);
+
+        } catch (error) {
+            notify("err", "Item cant delete!");
+
+        }
+    }
+
 
     return (
         <div className="pos-products-page">
@@ -196,7 +236,8 @@ export default function POSProducts() {
                                                 onClick={() =>
                                                     handleQuantityChange(
                                                         product._id,
-                                                        quantities[product._id] - 1
+                                                        quantities[product._id] - 1,
+                                                        product
                                                     )
                                                 }
                                             >
@@ -217,7 +258,8 @@ export default function POSProducts() {
                                                 onClick={() =>
                                                     handleQuantityChange(
                                                         product._id,
-                                                        quantities[product._id] + 1
+                                                        quantities[product._id] + 1,
+                                                        product
                                                     )
                                                 }
                                             >
@@ -276,8 +318,10 @@ export default function POSProducts() {
                                     onChange={(e) => setFormData({ ...formData, unitType: e.target.value })}
                                     className="form-input"
                                 >
-                                    <option value="number">Number</option>
+                                    <option value="number">number</option>
                                     <option value="liter">Liter</option>
+                                    <option value="kg">Kg</option>
+
                                 </select>
                             </div>
 
@@ -309,76 +353,91 @@ export default function POSProducts() {
                                 <button type="button" className="cancel-btn" onClick={() => setShowAddModal(false)}>
                                     Cancel
                                 </button>
-                                <button type="submit" className="submit-btn">
+                                {/* <ToastContainer /> */}
+
+                                <button type="submit" className="submit-btn" onClick={() => setShowAddModal(true)}>
+                                    {/* <button type="button" className="cancel-btn" onClick={() => notify()}>
+                                    Add Product
+                                </button> */}
+
                                     Add Product
                                 </button>
                             </div>
                         </form>
                     </div>
-                </div>
-            )}
+                </div >
+            )
+            }
 
             {/* Edit Product Modal */}
-            {showEditModal && editingProduct && (
-                <div className="modal-overlay" onClick={() => setShowEditModal(false)}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h2 className="modal-title">✏️ Edit Product Price</h2>
-                        <form onSubmit={handleEditProduct}>
-                            <div className="form-group">
-                                <label>Product Name</label>
-                                <input
-                                    type="text"
-                                    value={formData.name}
-                                    disabled
-                                    className="form-input"
-                                />
-                            </div>
+            {
+                showEditModal && editingProduct && (
+                    <div className="modal-overlay" onClick={() => setShowEditModal(false)}>
+                        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                            <h2 className="modal-title">✏️ Edit Product Price</h2>
+                            <form onSubmit={handleEditProduct}>
+                                <div className="form-group">
+                                    <label>Product Name</label>
+                                    <input
+                                        type="text"
+                                        value={formData.name}
+                                        disabled
+                                        className="form-input"
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <label>New Price (₹) *</label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    min="0"
-                                    value={formData.price}
-                                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                                    required
-                                    className="form-input"
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <label>New Price (₹) </label>
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        min="0"
+                                        value={formData.price}
+                                        onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                                        required
+                                        className="form-input"
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <label>Unit Type</label>
-                                <input
-                                    type="text"
-                                    value={formData.unitType}
-                                    disabled
-                                    className="form-input"
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <label>Unit Type</label>
+                                    <input
+                                        type="text"
+                                        value={formData.unitType}
+                                        disabled
+                                        className="form-input"
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <label>Current Stock</label>
-                                <input
-                                    type="text"
-                                    value={formData.availableQty}
-                                    disabled
-                                    className="form-input"
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <label>New Stock</label>
+                                    <input
+                                        type="number"
+                                        // value={formData.availableQty}
+                                        // step="0.01"
+                                        min="0"
+                                        value={formData.availableQty}
+                                        onChange={(e) => setFormData({ ...formData, availableQty: e.target.value })}
+                                        required
+                                        className="form-input" />
+                                </div>
 
-                            <div className="modal-actions">
-                                <button type="button" className="cancel-btn" onClick={() => setShowEditModal(false)}>
-                                    Cancel
-                                </button>
-                                <button type="submit" className="submit-btn">
-                                    Update Price
-                                </button>
-                            </div>
-                        </form>
+                                <div className="modal-actions">
+                                    <button type="button" className="cancel-btn" onClick={() => setShowEditModal(false)}>
+                                        Cancel
+                                    </button>
+                                    <button type="submit" className="submit-btn" onClick={() => setShowEditModal(true)}>
+                                        Update Price
+                                    </button>
+                                </div>
+                            </form>
+                                    <button type="delete" className="delete-btn" onClick={() => setShowdeleteModal(editingProduct)}>
+                                        Delete Item
+                                    </button>
+                        </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     );
 }

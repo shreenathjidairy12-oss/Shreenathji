@@ -104,25 +104,36 @@ const addItem = async (req, res) => {
 
 
 //  Update price (immediate effect)
-const updatePrice = async (req, res) => {
+const updateItem = async (req, res) => {
   try {
-    const { price } = req.body;
-
-    if (price == null || price < 0) {
-      return res.status(400).json({ msg: "Invalid price" });
+    const { price ,  availableQty} = req.body;
+    console.log(price,availableQty);
+    const updateData = {};
+    
+    if(price !== undefined){
+            if (price < 0) {
+        return res.status(400).json({ msg: "Invalid price" });
+      }
+      updateData.price = price
     }
-
+        if(availableQty !== undefined){
+            if (availableQty < 0) {
+        return res.status(400).json({ msg: "Invalid Quanitty" });
+      }
+      updateData.availableQty = availableQty;
+    }
     const item = await Item.findByIdAndUpdate(
       req.params.id,
-      { price },
+      {$set : updateData},
       { new: true }
     );
-
+    console.log(item);
+    
     if (!item) {
       return res.status(404).json({ msg: "Item not found" });
     }
 
-    res.json({ msg: "Price updated successfully", item });
+    res.json({ msg: "Price & Quantity updated successfully", item });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
@@ -138,8 +149,33 @@ const getItems = async (req, res) => {
   }
 };
 
+const deleteItem = async(req, res) =>{
+  try{
+    const productId = req.params.id;
+    console.log(productId);
+    
+
+        const deletedProduct = await Item.findByIdAndDelete(productId);
+    if (!deletedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json({
+      message: "Product deleted successfully",
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error deleting product",
+    });
+  }
+
+  }
+
+
 module.exports = {
   addItem,
-  updatePrice,
+  updateItem,
   getItems,
+  deleteItem
 };

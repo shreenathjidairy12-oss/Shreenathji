@@ -5,6 +5,7 @@ const auth = require("../../middlewares/authMiddleware");
 
 router.post("/", auth.verifyToken, ctrl.addItem);
 router.get("/", auth.verifyToken, ctrl.getItems);
-router.patch("/:id/price", auth.verifyToken, ctrl.updatePrice);
+router.patch("/:id", auth.verifyToken, ctrl.updateItem);
+router.delete("/:id",auth.verifyToken, ctrl.deleteItem);
 
 module.exports = router;

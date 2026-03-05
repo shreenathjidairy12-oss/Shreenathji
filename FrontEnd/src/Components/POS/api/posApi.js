@@ -25,14 +25,22 @@ export const addItem = async (itemData) => {
 };
 
 
-export const updateItemPrice = async (itemId, newPrice) => {
+export const updateItemPrice = async (itemId, newPrice, newQuality) => {
     const response = await axios.patch(
-        `${BASE_URL}/items/${itemId}/price`,
-        { price: newPrice },
+        `${BASE_URL}/items/${itemId}`,
+        { price: newPrice , availableQty : newQuality},
         { headers: getAuthHeader() }
     );
     return response.data;
 };
+
+export const deleteItem = async (itemId)=>{
+    const response = await axios.delete(
+        `${BASE_URL}/items/${itemId}`,
+        {headers :getAuthHeader() }
+    );
+    return response.data;
+}
 
 // Bill APIs
 export const generateBill = async (billData) => {
